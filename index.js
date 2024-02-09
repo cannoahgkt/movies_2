@@ -10,9 +10,6 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://cannoah:NKcJpeB1M6jcU
 
 const app = express();
 const port = process.env.PORT || 3000;
-app.listen(port, '0.0.0.0', () => {
-  console.log('Listening on Port ' + port);
-});
 
 app.use(bodyParser.json());
 
@@ -29,7 +26,6 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -86,23 +82,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
   }
 });
 
-const topMovies = [
-  {
-    title: 'Treasure Planet',
-    director: 'John Musker, Ron Clements',
-    year: 2002,
-  },
-  {
-    title: 'Star Wars: Episode III - Revenge of the Sith',
-    director: 'George Lucas',
-    year: 2005,
-  },
-  {
-    title: 'Spider-Man: No Way Home',
-    director: 'Jon Watts',
-    year: 2021,
-  },
-];
+const topMovies = [];
 
 app.get('/topmovies', (req, res) => {
   res.json({ movies: topMovies });
