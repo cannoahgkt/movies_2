@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const passport = require('./passport');
 const authRouter = require('./auth');
 const jwt = require('jsonwebtoken');
@@ -14,7 +13,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Creates a list of allowed domains
-let allowedOrigins = ['*', 'http://127.0.0.1:3000', 'http://testsite.com'];
+/*let allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://testsite.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -25,7 +24,11 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+}));*/
+
+// Use Cross-Origin Resource Sharing
+const cors = require("cors");
+app.use(cors());
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
