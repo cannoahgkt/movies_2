@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Creates a list of allowed domains
-/*let allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://testsite.com'];
+/*let allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://testsite.com', 'https://myflixonline.netlify.app'];
 
 app.use(cors({
   origin: (origin, callback) => {
