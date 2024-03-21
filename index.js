@@ -16,8 +16,12 @@ app.listen(port, '0.0.0.0', () => {
 
 app.use(bodyParser.json());
 
+// Use Cross-Origin Resource Sharing
+const cors = require("cors");
+app.use(cors());
+
 // Creates a list of allowed domains
-let allowedOrigins = ['*', 'http://127.0.0.1:3000', 'http://testsite.com', 'https://myflixonline.netlify.app'];
+/*let allowedOrigins = ['*', 'http://127.0.0.1:3000', 'http://testsite.com', 'https://myflixonline.netlify.app'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -28,7 +32,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+}));*/
 
 
 // Connect to MongoDB using Mongoose
@@ -125,7 +129,7 @@ app.post('/login', (req, res, next) => {
 
     // If authentication is successful, generate and return a JWT token
     const token = generateJWTToken(user);
-    return res.json({ token });
+    return res.json({ user, token });
   })(req, res, next);
 });
 
